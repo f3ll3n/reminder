@@ -9,5 +9,6 @@ export default defineConfig({
     assetsDir: "assets",
     sourcemap: true,
   },
-  base: "./",
+  // Имя репозитория: приложение живёт на https://<user>.github.io/reminder/
+  base: "/reminder/",
 });

@@ -11,7 +11,9 @@ self.addEventListener('notificationclick', (event) => {
     (async () => {
       const windows = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
       if (windows.length === 0) {
-        const url = action === 'open' ? '/' : `/?action=${encodeURIComponent(action)}&id=${encodeURIComponent(id)}`;
+        // scope — каталог, в котором опубликовано приложение (на GitHub Pages это /reminder/)
+        const base = self.registration.scope;
+        const url = action === 'open' ? base : `${base}?action=${encodeURIComponent(action)}&id=${encodeURIComponent(id)}`;
         await self.clients.openWindow(url);
         return;
       }
